@@ -1,0 +1,19 @@
+.MuiImageListItem-img.active,
+.MuiImageListItem-img:hover,
+.main-image {
+  border: 1px solid #1976d2;
+}
+
+.MuiImageListItem-img:hover {
+  cursor: pointer;
+}
+
+.main-image {
+  height: 280px;
+  overflow: hidden;
+}
+
+.main-image img {
+  max-width: 100%;
+  height: auto;
+}
