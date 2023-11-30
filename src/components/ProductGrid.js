@@ -30,6 +30,7 @@ export default function ProductGrid({ category, limit, skip }) {
                     id={product.id}
                     images={product.images}
                     discount={product.discountPercentage}
+                    description={product.description}
                   />
                 </Grid>
               ))}

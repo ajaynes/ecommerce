@@ -16,13 +16,11 @@ export default function ProductCard({
   id,
   images,
   discount,
+  description
 }) {
-  let USDollar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
   return (
     <Card data-id={id}>
+      {discount > 15 ? <div className="sale-flag">On Sale</div> : null}
       <CardMedia
         sx={{ height: 140 }}
         image={thumbnail}
@@ -42,8 +40,8 @@ export default function ProductCard({
           {brand}
         </Typography>
         <Link
-          to={`/product/${title.replace(/ +/g, "-").toLowerCase()}`}
-          state={{ title, thumbnail, price, rating, brand, id, images }}
+          to={`/product/${title.replace(/ +/g, "-").toLowerCase()}?id=${id}`}
+          state={{ title, thumbnail, price, rating, brand, id, images, discount, description}}
         >
           details
         </Link>

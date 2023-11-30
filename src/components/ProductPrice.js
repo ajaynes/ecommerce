@@ -3,7 +3,7 @@ export default function ProductPrice({ price, discount }) {
   const discountPrice = Math.round(price - price / discount);
   return (
     <>
-      <div class="price">
+      <div className="price">
         {discount > 15 ? (
           <>
             <span className="was-price">was {formatCurrency(price)}</span>
