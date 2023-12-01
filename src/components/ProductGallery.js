@@ -12,7 +12,7 @@ export default function ProductGallery(props) {
       <div className="main-image">
         <img src={selectedImage} />
       </div>
-      <ImageList sx={{ width: 500, height: 350 }} cols={3} rowHeight={164}>
+      <ImageList sx={{height: 300 }} cols={5} rowHeight={150} gap={8}>
         {images.map((item) => (
           <ImageListItem key={item} onClick={(e) => handleClick(e)}>
             <img

@@ -1,6 +1,5 @@
 .MuiImageListItem-img.active,
-.MuiImageListItem-img:hover,
-.main-image {
+.MuiImageListItem-img:hover {
   border: 1px solid #1976d2;
 }
 
@@ -8,12 +7,12 @@
   cursor: pointer;
 }
 
-.main-image {
-  height: 280px;
-  overflow: hidden;
+.main-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
 }
 
-.main-image img {
-  max-width: 100%;
-  height: auto;
+.MuiImageList-standard li {
+  overflow: hidden;
 }
