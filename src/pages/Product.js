@@ -26,7 +26,7 @@ export default function Product() {
               <ProductGallery images={data.images} id={data.id} />
             </Grid>
             <Grid item xs={7}>
-            <div className="product-info">
+              <div className="product-info">
                 <Typography variant="h4" component="h1" gutterBottom>
                   {data.title}
                 </Typography>
@@ -35,10 +35,11 @@ export default function Product() {
                   {data.brand}
                 </Typography>
                 <Rating name="read-only" value={data.rating} readOnly />
+                <Typography variant="p" component="p" gutterBottom>{data.description}</Typography>
               </div>
             </Grid>
           </Grid>
-          <Typography variant="p" component="p" gutterBottom>{data.description}</Typography>
+
           <Typography variant="h6" gutterBottom>Related Products</Typography>
           <ProductGrid category={data.category} limit={4} skip={0} />
         </Container>
