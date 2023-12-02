@@ -5,19 +5,18 @@ const cartSlice = createSlice({
   initialState: [],
   reducers: {
     addToCart: (state, action) => {
-      state.push(action.payload);
-    },
-    toggleComplete: (state, action) => {
-      const todo = state.find((todo) => todo.id === action.payload);
-      if (todo) {
-        todo.completed = !todo.completed;
+      const item = state.find((product) => product.id === action.payload.id);
+      if (item) {
+        item.quantity += action.payload.quantity;
+      } else {
+        state.push(action.payload);
       }
     },
-    deleteTodo: (state, action) => {
-      const index = state.findIndex((todo) => todo.id === action.payload);
-      if (index !== -1) {
-        state.splice(index, 1);
-      }
+    changeQuantity: (state, action) => {
+        const item = state.find((product) => product.id === action.payload.id);
+        if (item) {
+            item.quantity = action.payload.quantity;
+        }
     },
   },
 });
