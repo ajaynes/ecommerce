@@ -1,3 +1,4 @@
+/* image gallery */
 .MuiImageListItem-img.active,
 .MuiImageListItem-img:hover {
   border: 1px solid #1976d2;
@@ -15,4 +16,44 @@
 
 .MuiImageList-standard li {
   overflow: hidden;
+}
+
+/* product cards */
+.MuiCard-root {
+  position: relative;
+}
+.sale-flag {
+  position: absolute;
+  top: 25px;
+  right: -30px;
+  color: white;
+  background-color: red;
+  transform: rotate(45deg);
+  width: 130px;
+  text-align: center;
+}
+
+/* pricing */
+.was-price {
+  color: #3b3b3b;
+  text-decoration: line-through;
+  font-size: 14px;
+}
+
+.sale-price,
+.no-sale-price {
+  display: block;
+  color: #0288d1;
+  font-size: 24px;
+}
+
+/* ratings */
+.ratings {
+  display: flex;
+  align-items: center;
+}
+
+.ratings .total-rating {
+  display: inline-block;
+  margin-left: 15px;
 }

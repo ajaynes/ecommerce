@@ -1,11 +1,11 @@
 import { useSearchParams } from "react-router-dom";
 import Typography from '@mui/material/Typography';
-import Rating from '@mui/material/Rating';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import ProductGallery from "../components/ProductGallery";
 import ProductPrice from "../components/ProductPrice";
 import ProductGrid from "../components/ProductGrid";
+import ProductRating from "../components/ProductRating";
 
 import { useGetProductByIdQuery } from "../services/product";
 
@@ -31,17 +31,18 @@ export default function Product() {
                   {data.title}
                 </Typography>
                 <ProductPrice discount={data.discountPercentage} price={data.price} />
-                <Typography variant="h5" component="h3" gutterBottom>
+                <Typography variant="h5" component="h2" gutterBottom>
                   {data.brand}
                 </Typography>
-                <Rating name="read-only" value={data.rating} readOnly />
+                <ProductRating rating={data.rating} />
                 <Typography variant="p" component="p" gutterBottom>{data.description}</Typography>
               </div>
             </Grid>
           </Grid>
-
-          <Typography variant="h6" gutterBottom>Related Products</Typography>
-          <ProductGrid category={data.category} limit={4} skip={0} />
+          <div className="related-products">
+            <Typography variant="h6" component="h3" gutterBottom>Related Products</Typography>
+            <ProductGrid category={data.category} limit={5} skip={0} />
+          </div>
         </Container>
       ) : null}
     </>

@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ProductPrice from "./ProductPrice";
+import ProductRating from "./ProductRating";
 
 export default function ProductCard({
   title,
@@ -20,7 +21,7 @@ export default function ProductCard({
 }) {
   return (
     <Card data-id={id}>
-      {discount > 15 ? <div className="sale-flag">On Sale</div> : null}
+      {discount > 15 ? <div className="sale-flag">On Sale!</div> : null}
       <CardMedia
         sx={{ height: 140 }}
         image={thumbnail}
@@ -33,16 +34,13 @@ export default function ProductCard({
         <Typography variant="subtitle1" gutterBottom>
           <ProductPrice price={price} discount={discount} />
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          {rating}
-        </Typography>
+
+        <ProductRating rating={rating} />
         <Typography variant="subtitle1" gutterBottom>
           {brand}
         </Typography>
         <Link
-          to={`/product/${title.replace(/ +/g, "-").toLowerCase()}?id=${id}`}
-          state={{ title, thumbnail, price, rating, brand, id, images, discount, description}}
-        >
+          to={`/product/${title.replace(/ +/g, "-").toLowerCase()}?id=${id}`}>
           details
         </Link>
       </CardContent>

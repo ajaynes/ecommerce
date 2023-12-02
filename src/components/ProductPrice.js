@@ -6,11 +6,11 @@ export default function ProductPrice({ price, discount }) {
       <div className="price">
         {discount > 15 ? (
           <>
-            <span className="was-price">was {formatCurrency(price)}</span>
-            <span className="price">now {formatCurrency(discountPrice)}</span>
+            <span className="was-price">{formatCurrency(price)}</span>
+            <span className="sale-price">{formatCurrency(discountPrice)}</span>
           </>
         ) : (
-          <span className="price">{formatCurrency(discountPrice)}</span>
+          <span className="no-sale-price">{formatCurrency(discountPrice)}</span>
         )}
       </div>
     </>
