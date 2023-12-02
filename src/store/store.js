@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-// Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { productsApi } from "./services/product";
+import { productsApi } from "../services/product";
+import cartReducer from "./cart"
 
 export const store = configureStore({
   reducer: {
     [productsApi.reducerPath]: productsApi.reducer,
+    cart: cartReducer
   },
 
   middleware: (getDefaultMiddleware) =>
