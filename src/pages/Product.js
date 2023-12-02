@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Header from "../components/Header";
 import ProductGallery from "../components/ProductGallery";
 import ProductPrice from "../components/ProductPrice";
 import ProductGrid from "../components/ProductGrid";
@@ -20,6 +21,8 @@ export default function Product() {
       ) : isLoading ? (
         <>Loading...</>
       ) : data ? (
+        <>
+        <Header />
         <Container maxWidth="xl">
           <Grid container spacing={4}>
             <Grid item xs={5}>
@@ -43,7 +46,7 @@ export default function Product() {
             <Typography variant="h6" component="h3" gutterBottom>Related Products</Typography>
             <ProductGrid category={data.category} limit={5} skip={0} />
           </div>
-        </Container>
+        </Container></>
       ) : null}
     </>
   );
