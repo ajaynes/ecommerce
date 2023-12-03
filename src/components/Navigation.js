@@ -11,8 +11,9 @@ export default function Navigation({location}) {
         <>Loading...</>
       ) : data ? (
         <>
-        <ul>
-            {data.map(category => <li><Link to={`/category/${category}`}>{category}</Link></li>)}
+        <ul style={{marginBottom: 50}}>
+            {data.map((category, i) => <li><Link key={i} to={`/category/${category}`}>{category}</Link></li>)}
+            <li><Link key={data.length + 1} to="/cart">Cart</Link></li>
         </ul>
         </>
       ) : null}
