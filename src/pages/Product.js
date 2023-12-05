@@ -7,7 +7,6 @@ import ProductGallery from "../components/ProductGallery";
 import ProductPrice from "../components/ProductPrice";
 import ProductGrid from "../components/ProductGrid";
 import ProductRating from "../components/ProductRating";
-
 import { useGetProductByIdQuery } from "../services/product";
 import AddToCart from "../components/AddToCart";
 
