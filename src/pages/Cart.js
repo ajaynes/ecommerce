@@ -8,6 +8,7 @@ export default function Cart() {
 
     return (
         <>
+        <h1>Cart Page</h1>
         <div>{cart.map(product => (
             <div>title: {product.title}, qty: {product.quantity}</div>
         ))}</div>
