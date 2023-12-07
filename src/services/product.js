@@ -12,7 +12,11 @@ export const productsApi = createApi({
     getProductsWithLimitsSkip: builder.query({
       query: (args) => {
         const { category, limit, skip } = args;
-        return { url: `category/${category}?limit=${limit}&skip=${skip}` };
+        if (category === "all-products") {
+          return { url: `?limit=${limit}&skip=${skip}` };
+        } else {
+          return { url: `category/${category}?limit=${limit}&skip=${skip}` };
+        }
       },
     }),
     searchProductsByTerm: builder.query({
@@ -22,7 +26,13 @@ export const productsApi = createApi({
       query: () => "categories",
     }),
     getCategoryByName: builder.query({
-      query: (name) => `category/${name}`,
+      query: (name) => {
+        if (name === "all-products") {
+          return { url: "" }
+        } else {
+          return { url: `category/${name}` }
+        }
+      },
     }),
   }),
 });

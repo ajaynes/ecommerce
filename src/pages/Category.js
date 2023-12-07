@@ -10,8 +10,10 @@ export default function Category(props) {
       .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
       .join(' ');
 
-
   const { data, error, isLoading } = useGetCategoryByNameQuery(categoryName);
+  const itemsPerPage = 12;
+  const {total, limit, skip} = data
+  console.log(total, limit, skip);
   return (
     <>
     {error ? (
@@ -28,5 +30,3 @@ export default function Category(props) {
     </>
   );
 }
-
-// TODO: handling for the all products category
