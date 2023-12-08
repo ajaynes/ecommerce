@@ -41,7 +41,7 @@ export default function ProductCard({
         </Typography>
         <Link
           to={`/product/${title.replace(/ +/g, "-").toLowerCase()}?id=${id}`}>
-          details
+          <Button variant="outlined" fullWidth={true}>details</Button>
         </Link>
       </CardContent>
     </Card>
