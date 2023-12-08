@@ -18,11 +18,11 @@ export default function Category(props) {
 
   const { data, error, isLoading } = useGetCategoryByNameQuery(categoryName);
   let totalPages = 1;
-  const { total, limit, skip } = data
-  if (total > 12) {
-    totalPages = Math.ceil(total / 12)
+  if (!isLoading && !error) {
+    if (data.total > 12) {
+      totalPages = Math.ceil(data.total / 12)
+    }
   }
-
   const paginate = (e, value) => {
     setPage(value)
     setProductSkip((value - 1) * 12)
@@ -39,7 +39,6 @@ export default function Category(props) {
           <Header />
           <h1>{formattedName}</h1>
           {totalPages > 1 ? <><ProductGrid category={categoryName} limit={12} skip={productSkip} /> <CategoryPagination totalPages={totalPages} paginate={paginate} page={page} /> </> : <ProductGrid category={categoryName} limit={12} skip={0} />}
-          <p>grid of products with a sort and filter by price, rating, and brand</p>
         </>) : null}
     </>
   );
