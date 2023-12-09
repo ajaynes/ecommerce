@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import ProductPrice from "./ProductPrice";
 import ProductRating from "./ProductRating";
 
+// TODO: fix the heights and margins after new grid is built
+
 export default function ProductCard({
   title,
   thumbnail,
@@ -20,7 +22,7 @@ export default function ProductCard({
   description
 }) {
   return (
-    <Card data-id={id}>
+    <Card data-id={id} style={{ margin: '0 10px', height: '420px' }}>
       {discount > 15 ? <div className="sale-flag">On Sale!</div> : null}
       <CardMedia
         sx={{ height: 140 }}

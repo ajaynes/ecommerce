@@ -12,15 +12,6 @@ export default function ProductGrid({ category, limit, skip }) {
   });
 
   const [searchParams] = useSearchParams();
-  // on product pages remove the current product from the list of related products
-  let filteredData;
-  if (data) {
-    if (searchParams.get("id")) {
-      filteredData = data.products.filter(p => p.id !== Number(searchParams.get("id")))
-    } else {
-      filteredData = data.products
-    }
-  }
   return (
     <>
       {error ? (
@@ -31,7 +22,7 @@ export default function ProductGrid({ category, limit, skip }) {
         <>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-              {filteredData.map((product) => (
+              {data.products.map((product) => (
                 <Grid item xs={6} md={3} key={product.id}>
                   <ProductCard
                     title={product.title}

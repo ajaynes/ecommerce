@@ -1,14 +1,14 @@
-import ProductGrid from "../components/ProductGrid";
+import ProductGridSlider from "../components/ProductGridSlider";
 import Header from "../components/Header";
 export default function Home(props) {
   return (
     <>
-    <Header />
+      <Header />
       <p>
         grid of select products, a hero, some filler ads, and some lorem ipsum
         text sections
       </p>
-      <ProductGrid category="smartphones" limit={4} skip={0} />
+      <ProductGridSlider category="tops" limit={5} skip={0} type="featured" />
     </>
   );
 }
