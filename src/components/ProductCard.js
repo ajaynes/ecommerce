@@ -22,7 +22,7 @@ export default function ProductCard({
   description
 }) {
   return (
-    <Card data-id={id} style={{ margin: '0 10px', height: '420px' }}>
+    <Card data-id={id} style={{ margin: '0 10px' }}>
       {discount > 15 ? <div className="sale-flag">On Sale!</div> : null}
       <CardMedia
         sx={{ height: 140 }}
