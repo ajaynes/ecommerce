@@ -5,6 +5,7 @@ import ProductGrid from "../components/ProductGrid";
 import { useGetCategoryByNameQuery } from "../services/product";
 import CategoryPagination from "../components/CategoryPagination";
 import { formatCategoryName } from "../utilities"
+import CategoryPageLayout from "../layouts/CategoryPageLayout"
 
 export default function Category(props) {
   const { categoryName } = useParams();
@@ -34,9 +35,10 @@ export default function Category(props) {
         <>Loading...</>
       ) : data ? (
         <>
-          <Header />
+          <CategoryPageLayout>
           <h1>{formattedName}</h1>
           {totalPages > 1 ? <><ProductGrid category={categoryName} limit={12} skip={productSkip} /> <CategoryPagination totalPages={totalPages} paginate={paginate} page={page} /> </> : <ProductGrid category={categoryName} limit={12} skip={0} />}
+          </CategoryPageLayout>
         </>) : null}
     </>
   );

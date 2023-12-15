@@ -1,6 +1,9 @@
 import { useState } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+
+// TODO: FIX the main image doesn't change if you choose another product from the related list
+
 export default function ProductGallery(props) {
   const { images, id } = props;
   const [selectedImage, setSelectedImage] = useState(images[0]);

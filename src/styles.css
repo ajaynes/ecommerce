@@ -53,8 +53,13 @@
   margin-left: 15px;
 }
 
+/* breadcrumbs */
+.breadcrumbs {
+  margin-bottom: 25px;
+}
+
 .body-layout {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 /* slick slider */

@@ -1,12 +1,15 @@
 import Container from '@mui/material/Container';
 import Header from '../components/Header';
-export default function ProductPageLayout({ children }) {
+import Breadcrumb from '../components/Breadcrumb';
+export default function ProductPageLayout(props) {
+
     return (
         <>
             <Header />
             <Container maxWidth="xl">
                 <div className="body-layout">
-                    {children}
+                    <Breadcrumb path={props.category} />
+                    {props.children}
                 </div>
             </Container>
         </>

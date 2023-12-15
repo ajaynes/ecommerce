@@ -50,7 +50,7 @@ export default function ProductGridSlider({ category, limit, skip, type }) {
             ) : data ? (
                 <>
                     <Box sx={{ flexGrow: 1 }}>
-                        <Container maxWidth="lg" style={{position: 'relative'}}>
+                        <Container maxWidth="xl" style={{ position: 'relative' }}>
                             <IconButton onClick={() => slider?.current?.slickPrev()} className="slider-button slider-prev">
                                 <KeyboardArrowLeftRoundedIcon fontSize="large" />
                             </IconButton>
@@ -73,8 +73,6 @@ export default function ProductGridSlider({ category, limit, skip, type }) {
                             <IconButton onClick={() => slider?.current?.slickNext()} className="slider-button slider-next">
                                 <KeyboardArrowRightRoundedIcon fontSize="large" />
                             </IconButton>
-
-
                         </Container>
                     </Box>
                 </>

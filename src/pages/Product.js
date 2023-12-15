@@ -15,6 +15,9 @@ export default function Product() {
   const productId = searchParams.get("id")
   const { data, error, isLoading } = useGetProductByIdQuery(productId);
 
+
+  console.log(data)
+
   return (
     <>
       {error ? (
@@ -23,7 +26,7 @@ export default function Product() {
         <>Loading...</>
       ) : data ? (
         <>
-          <ProductPageLayout>
+          <ProductPageLayout category={data.category}>
             <Grid container spacing={4}>
               <Grid item xs={5}>
                 <ProductGallery images={data.images} id={data.id} />
