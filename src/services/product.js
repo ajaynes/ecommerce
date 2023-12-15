@@ -1,5 +1,3 @@
-import React from "react";
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productsApi = createApi({
@@ -28,9 +26,9 @@ export const productsApi = createApi({
     getCategoryByName: builder.query({
       query: (name) => {
         if (name === "all-products") {
-          return { url: "" }
+          return { url: "" };
         } else {
-          return { url: `category/${name}` }
+          return { url: `category/${name}` };
         }
       },
     }),

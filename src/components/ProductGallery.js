@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 
@@ -15,7 +16,7 @@ export default function ProductGallery(props) {
       <div className="main-image">
         <img src={selectedImage} />
       </div>
-      <ImageList sx={{height: 300 }} cols={5} rowHeight={150} gap={8}>
+      <ImageList sx={{ height: 300 }} cols={5} rowHeight={150} gap={8}>
         {images.map((item) => (
           <ImageListItem key={item} onClick={(e) => handleClick(e)}>
             <img
@@ -31,3 +32,8 @@ export default function ProductGallery(props) {
     </>
   );
 }
+
+ProductGallery.propTypes = {
+  images: PropTypes.array,
+  id: PropTypes.number,
+};

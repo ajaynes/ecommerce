@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { formatCurrency } from "../utilities";
 export default function ProductPrice({ price, discount }) {
   const discountPrice = Math.round(price - price / discount);
@@ -16,3 +17,8 @@ export default function ProductPrice({ price, discount }) {
     </>
   );
 }
+
+ProductPrice.propTypes = {
+  price: PropTypes.number,
+  discount: PropTypes.number,
+};

@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useGetProductsWithLimitsSkipQuery } from "../services/product";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -11,7 +11,6 @@ export default function ProductGrid({ category, limit, skip }) {
     skip,
   });
 
-  const [searchParams] = useSearchParams();
   return (
     <>
       {error ? (
@@ -23,7 +22,13 @@ export default function ProductGrid({ category, limit, skip }) {
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2} alignItems="stretch">
               {data.products.map((product) => (
-                <Grid item style={{display: 'flex'}} xs={6} md={3} key={product.id}>
+                <Grid
+                  item
+                  style={{ display: "flex" }}
+                  xs={6}
+                  md={3}
+                  key={product.id}
+                >
                   <ProductCard
                     title={product.title}
                     thumbnail={product.thumbnail}
@@ -44,3 +49,9 @@ export default function ProductGrid({ category, limit, skip }) {
     </>
   );
 }
+
+ProductGrid.propTypes = {
+  category: PropTypes.string,
+  limit: PropTypes.number,
+  skip: PropTypes.number,
+};

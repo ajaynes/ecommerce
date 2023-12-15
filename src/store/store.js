@@ -1,21 +1,21 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
 import { productsApi } from "../services/product";
-import cartReducer from "./cart"
+import cartReducer from "./cart";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-}
+};
 
 const rootReducer = combineReducers({
   [productsApi.reducerPath]: productsApi.reducer,
-  cart: cartReducer
-})
+  cart: cartReducer,
+});
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -26,4 +26,4 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
