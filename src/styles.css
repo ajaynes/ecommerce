@@ -9,7 +9,7 @@
 .main-image img {
   width: 100%;
   height: 500px;
-  object-fit: contain;
+  object-fit: cover;
 }
 .MuiImageList-standard li {
   overflow: hidden;
@@ -51,6 +51,10 @@
 .ratings .total-rating {
   display: inline-block;
   margin-left: 15px;
+}
+
+.body-layout {
+  margin-top: 50px;
 }
 
 /* slick slider */
@@ -117,6 +121,9 @@
   height: 100%;
   min-height: 1px;
   margin: 0 10px;
+}
+.slick-slide > div {
+  width: 100%;
 }
 [dir='rtl'] .slick-slide {
   float: right;

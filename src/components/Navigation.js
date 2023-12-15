@@ -104,7 +104,15 @@ export default function Navigation(props) {
         LOGO
       </Typography>
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-        {categories.slice(0, 10).map((page) => (
+      <Link to="/category/all-products">
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              {formatCategoryName("all-products")}
+            </Button>
+          </Link>
+        {categories.slice(0, 8).map((page) => (
           <Link to={`/category/${page}`} key={page}>
             <Button
 

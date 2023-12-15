@@ -1,14 +1,13 @@
 import { useSearchParams } from "react-router-dom";
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Header from "../components/Header";
 import ProductGallery from "../components/ProductGallery";
 import ProductPrice from "../components/ProductPrice";
 import ProductGridSlider from "../components/ProductGridSlider";
 import ProductRating from "../components/ProductRating";
 import { useGetProductByIdQuery } from "../services/product";
 import AddToCart from "../components/AddToCart";
+import ProductPageLayout from "../layouts/ProductPageLayout";
 
 
 export default function Product() {
@@ -24,8 +23,7 @@ export default function Product() {
         <>Loading...</>
       ) : data ? (
         <>
-          <Header />
-          <Container maxWidth="xl">
+          <ProductPageLayout>
             <Grid container spacing={4}>
               <Grid item xs={5}>
                 <ProductGallery images={data.images} id={data.id} />
@@ -49,8 +47,8 @@ export default function Product() {
               <Typography variant="h6" component="h3" gutterBottom>Related Products</Typography>
               <ProductGridSlider category={data.category} limit={5} skip={0} type="product" />
             </div>
-
-          </Container></>
+          </ProductPageLayout>
+        </>
       ) : null}
     </>
   );
