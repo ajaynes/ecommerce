@@ -19,8 +19,7 @@ export default function ProductGallery(props) {
         {images.map((item) => (
           <ImageListItem key={item} onClick={(e) => handleClick(e)}>
             <img
-              srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-              src={`${item}?w=164&h=164&fit=crop&auto=format`}
+              src={item}
               alt="placeholder"
               id={id}
               loading="lazy"

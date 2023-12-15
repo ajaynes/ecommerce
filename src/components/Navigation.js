@@ -75,10 +75,15 @@ export default function Navigation(props) {
             display: { xs: 'block', md: 'none' },
           }}
         >
-          {categories.slice(0, 10).map((page) => (
+          <MenuItem key='all' onClick={handleCloseNavMenu}>
+            <Link to="/category/all-products">
+              <Typography textAlign="center" sx={{ color: 'white', textTransform: 'uppercase', fontSize: '14px' }}>{formatCategoryName('all-products')}</Typography>
+            </Link>
+          </MenuItem>
+          {categories.slice(0, 7).map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu}>
               <Link to={`/category/${page}`}>
-                <Typography textAlign="center">{formatCategoryName(page)}</Typography>
+                <Typography textAlign="center" sx={{ color: 'white', textTransform: 'uppercase', fontSize: '14px' }}>{formatCategoryName(page)}</Typography>
               </Link>
             </MenuItem>
           ))}
@@ -104,15 +109,15 @@ export default function Navigation(props) {
         LOGO
       </Typography>
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-      <Link to="/category/all-products">
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              {formatCategoryName("all-products")}
-            </Button>
-          </Link>
-        {categories.slice(0, 8).map((page) => (
+        <Link to="/category/all-products" key="all">
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: 'white', display: 'block' }}
+          >
+            {formatCategoryName("all-products")}
+          </Button>
+        </Link>
+        {categories.slice(0, 7).map((page) => (
           <Link to={`/category/${page}`} key={page}>
             <Button
 
