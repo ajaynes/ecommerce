@@ -22,14 +22,14 @@ export default function ProductCard({
   description
 }) {
   return (
-    <Card data-id={id} style={{ margin: '0 10px' }}>
+    <Card data-id={id} style={{ margin: '0 10px', display: 'flex', flexDirection: 'column', width: '100%', height: '100%'}}>
       {discount > 15 ? <div className="sale-flag">On Sale!</div> : null}
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 180 }}
         image={thumbnail}
         title={`Thumbnail of ${title}`}
       />
-      <CardContent>
+      <CardContent style={{paddingBottom: '80px'}}>
         <Typography gutterBottom variant="h5">
           {title}
         </Typography>
@@ -42,7 +42,7 @@ export default function ProductCard({
           {brand}
         </Typography>
         <Link
-          to={`/product/${title.replace(/ +/g, "-").toLowerCase()}?id=${id}`}>
+          to={`/product/${title.replace(/ +/g, "-").toLowerCase()}?id=${id}`} style={{position: 'absolute', bottom: '25px', width: 'calc(100% - 36px)'}}>
           <Button variant="outlined" fullWidth={true}>details</Button>
         </Link>
       </CardContent>

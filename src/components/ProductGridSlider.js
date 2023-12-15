@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
 import { useGetProductsWithLimitsSkipQuery } from "../services/product";
@@ -8,6 +9,7 @@ import ProductCard from "./ProductCard";
 // TODO: remove the container - will be determined by the overall layout of the pages
 
 export default function ProductGridSlider({ category, limit, skip, type }) {
+    const slider = useRef(null);
     const { data, error, isLoading } = useGetProductsWithLimitsSkipQuery({
         category,
         limit,
@@ -27,6 +29,7 @@ export default function ProductGridSlider({ category, limit, skip, type }) {
 
     const sliderSettings = {
         dots: false,
+        arrows: false,
         infinite: true,
         slidesToShow: type === "product" ? limit - 2 : limit - 1,
         slidesToScroll: 1,
@@ -45,7 +48,8 @@ export default function ProductGridSlider({ category, limit, skip, type }) {
                 <>
                     <Box sx={{ flexGrow: 1 }}>
                         <Container maxWidth="lg">
-                            <Slider {...sliderSettings}>
+                        <button onClick={() => slider?.current?.slickPrev()}>Prev</button>
+                            <Slider ref={slider} {...sliderSettings}>
                                 {filteredData.map((product) => (
                                     <ProductCard
                                         title={product.title}
@@ -62,6 +66,8 @@ export default function ProductGridSlider({ category, limit, skip, type }) {
                                     />
                                 ))}
                             </Slider>
+
+                            <button onClick={() => slider?.current?.slickNext()}>Next</button>
                         </Container>
                     </Box>
                 </>

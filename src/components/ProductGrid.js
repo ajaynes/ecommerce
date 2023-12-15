@@ -21,9 +21,9 @@ export default function ProductGrid({ category, limit, skip }) {
       ) : data ? (
         <>
           <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} alignItems="stretch">
               {data.products.map((product) => (
-                <Grid item xs={6} md={3} key={product.id}>
+                <Grid item style={{display: 'flex'}} xs={6} md={3} key={product.id}>
                   <ProductCard
                     title={product.title}
                     thumbnail={product.thumbnail}
