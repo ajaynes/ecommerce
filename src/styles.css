@@ -3,17 +3,14 @@
 .MuiImageListItem-img:hover {
   border: 1px solid #1976d2;
 }
-
 .MuiImageListItem-img:hover {
   cursor: pointer;
 }
-
 .main-image img {
   width: 100%;
   height: 500px;
   object-fit: contain;
 }
-
 .MuiImageList-standard li {
   overflow: hidden;
 }
@@ -39,7 +36,6 @@
   text-decoration: line-through;
   font-size: 14px;
 }
-
 .sale-price,
 .no-sale-price {
   display: block;
@@ -52,14 +48,12 @@
   display: flex;
   align-items: center;
 }
-
 .ratings .total-rating {
   display: inline-block;
   margin-left: 15px;
 }
 
 /* slick slider */
-
 .slick-list,
 .slick-slider,
 .slick-track {
@@ -81,11 +75,13 @@
   -ms-touch-action: pan-y;
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
 }
 .slick-list {
   overflow: hidden;
   margin: 0;
   padding: 0;
+  margin: 0 -10px;
 }
 .slick-list:focus {
   outline: 0;
@@ -120,9 +116,6 @@
   float: left;
   height: 100%;
   min-height: 1px;
-}
-
-.slick-slide > div {
   margin: 0 10px;
 }
 [dir='rtl'] .slick-slide {
@@ -142,6 +135,7 @@
   height: auto;
   align-items: stretch;
   justify-content: center;
+  margin: 0 10px;
 }
 .slick-vertical .slick-slide {
   display: block;
@@ -287,4 +281,17 @@
 .slick-dots li.slick-active button:before {
   opacity: 0.75;
   color: white;
+}
+
+.slider-button {
+  position: absolute!important;
+  z-index: 1;
+}
+.slider-button.slider-prev {
+  bottom: 45%;
+  left: -30px;
+}
+.slider-button.slider-next {
+  top: 45%;
+  right: -30px;
 }

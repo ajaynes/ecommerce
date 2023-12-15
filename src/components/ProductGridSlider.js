@@ -3,6 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
 import { useGetProductsWithLimitsSkipQuery } from "../services/product";
 import Box from "@mui/material/Box";
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Container from "@mui/material/Container";
 import ProductCard from "./ProductCard";
 
@@ -35,7 +38,7 @@ export default function ProductGridSlider({ category, limit, skip, type }) {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
-        cssEase: "linear"
+        cssEase: "linear",
     };
 
     return (
@@ -47,8 +50,10 @@ export default function ProductGridSlider({ category, limit, skip, type }) {
             ) : data ? (
                 <>
                     <Box sx={{ flexGrow: 1 }}>
-                        <Container maxWidth="lg">
-                        <button onClick={() => slider?.current?.slickPrev()}>Prev</button>
+                        <Container maxWidth="lg" style={{position: 'relative'}}>
+                            <IconButton onClick={() => slider?.current?.slickPrev()} className="slider-button slider-prev">
+                                <KeyboardArrowLeftRoundedIcon fontSize="large" />
+                            </IconButton>
                             <Slider ref={slider} {...sliderSettings}>
                                 {filteredData.map((product) => (
                                     <ProductCard
@@ -61,13 +66,15 @@ export default function ProductGridSlider({ category, limit, skip, type }) {
                                         images={product.images}
                                         discount={product.discountPercentage}
                                         description={product.description}
-                                        style={{ marginRight: '15px' }}
                                         key={product.id}
                                     />
                                 ))}
                             </Slider>
+                            <IconButton onClick={() => slider?.current?.slickNext()} className="slider-button slider-next">
+                                <KeyboardArrowRightRoundedIcon fontSize="large" />
+                            </IconButton>
 
-                            <button onClick={() => slider?.current?.slickNext()}>Next</button>
+
                         </Container>
                     </Box>
                 </>
