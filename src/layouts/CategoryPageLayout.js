@@ -3,8 +3,6 @@ import Container from "@mui/material/Container";
 import Header from "../components/Header";
 import Breadcrumb from "../components/Breadcrumb";
 export default function CategoryPageLayout({ children }) {
-  console.log("file: CategoryPageLayout.js:6 ~ children:", children);
-
   return (
     <>
       <Header />

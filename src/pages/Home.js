@@ -11,7 +11,12 @@ export default function Home() {
           text sections
         </p>
       </Container>
-      <ProductGridSlider category="tops" limit={5} skip={0} type="featured" />
+      <ProductGridSlider
+        category="skincare"
+        limit={5}
+        skip={0}
+        type="featured"
+      />
     </>
   );
 }

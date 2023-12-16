@@ -26,7 +26,7 @@ export const productsApi = createApi({
     getCategoryByName: builder.query({
       query: (name) => {
         if (name === "all-products") {
-          return { url: "" };
+          return { url: "?limit=100&skip=0" };
         } else {
           return { url: `category/${name}` };
         }
