@@ -48,7 +48,7 @@ export default function Category() {
     setAllPages(0);
   }, [location]);
 
-  const filter = (e, value) => {
+  const filter = (e) => {
     if (e.target.dataset.type === "brand") {
       setIsFiltered(true);
       setFilteredList(
