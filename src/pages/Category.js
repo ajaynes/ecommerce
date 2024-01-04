@@ -6,6 +6,7 @@ import { useGetCategoryByNameQuery } from "../services/product";
 import CategoryPagination from "../components/CategoryPagination";
 import { formatCategoryName } from "../utilities";
 import CategoryPageLayout from "../layouts/CategoryPageLayout";
+import CategorySidebar from "../components/CategorySidebar";
 
 export default function Category() {
   const { categoryName } = useParams();
@@ -44,6 +45,7 @@ export default function Category() {
   });
   useEffect(() => {
     setIsFiltered(false);
+    setAllPages(0);
   }, [location]);
 
   const filter = (e, value) => {
@@ -66,8 +68,6 @@ export default function Category() {
     setAllPages(0);
   };
 
-  console.log(productList)
-
   return (
     <>
       {error ? (
@@ -77,10 +77,11 @@ export default function Category() {
       ) : data ? (
         <>
           <CategoryPageLayout products={data.products}>
-            <button data-type="brand" value="Apple" onClick={filter}>
-              Apple
-            </button>
-            <button onClick={clearFilter}>Clear</button>
+            <CategorySidebar
+              filter={filter}
+              products={isFiltered ? filteredList : data.products}
+              clearFilter={clearFilter}
+            />
             <h1>{formattedName}</h1>
             <>
               <ProductGrid

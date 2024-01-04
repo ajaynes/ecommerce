@@ -14,8 +14,6 @@ export default function Product() {
   const productId = searchParams.get("id");
   const { data, error, isLoading } = useGetProductByIdQuery(productId);
 
-  console.log(data);
-
   return (
     <>
       {error ? (
