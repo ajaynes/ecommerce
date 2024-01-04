@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useSearchParams, useLocation } from "react-router-dom";
 import ProductGrid from "../components/ProductGrid";
 import { useGetCategoryByNameQuery } from "../services/product";
 import CategoryPagination from "../components/CategoryPagination";
@@ -11,14 +11,17 @@ export default function Category() {
   const { categoryName } = useParams();
   let formattedName = formatCategoryName(categoryName);
   const [page, setPage] = useState(1);
+  const [allPages, setAllPages] = useState(0);
   const [firstIndex, setFirstIndex] = useState(0);
   const [secondIndex, setSecondIndex] = useState(12);
-  const [filterByBrand, setFilterByBrand] = useState("");
+  const [productList, setProductList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [filteredList, setFilteredList] = useState([]);
+  const location = useLocation();
 
   const { data, error, isLoading } = useGetCategoryByNameQuery(categoryName);
   let totalPages = 1;
-  console.log("file: Category.js:20 ~ totalPages:", totalPages);
 
   if (!isLoading) {
     totalPages = Math.ceil(data.products.length / 12);
@@ -36,11 +39,34 @@ export default function Category() {
     setSearchParams({ page: value });
   };
 
+  useEffect(() => {
+    setProductList(data?.products);
+  });
+  useEffect(() => {
+    setIsFiltered(false);
+  }, [location]);
+
   const filter = (e, value) => {
     if (e.target.dataset.type === "brand") {
-      console.log("filter by brand");
+      setIsFiltered(true);
+      setFilteredList(
+        productList.filter((product) => product.brand === e.target.value),
+      );
+      setAllPages(
+        Math.ceil(
+          productList.filter((product) => product.brand === e.target.value)
+            .length / 12,
+        ),
+      );
     }
   };
+
+  const clearFilter = () => {
+    setIsFiltered(false);
+    setAllPages(0);
+  };
+
+  console.log(productList)
 
   return (
     <>
@@ -52,15 +78,20 @@ export default function Category() {
         <>
           <CategoryPageLayout products={data.products}>
             <button data-type="brand" value="Apple" onClick={filter}>
-              Filter by brand: Apple
+              Apple
             </button>
+            <button onClick={clearFilter}>Clear</button>
             <h1>{formattedName}</h1>
             <>
               <ProductGrid
                 category={categoryName}
-                products={data.products.slice(firstIndex, secondIndex)}
+                products={
+                  isFiltered
+                    ? filteredList
+                    : data.products.slice(firstIndex, secondIndex)
+                }
               />
-              {totalPages > 1 ? (
+              {totalPages > 1 && allPages === 0 ? (
                 <CategoryPagination
                   totalPages={totalPages}
                   paginate={paginate}
