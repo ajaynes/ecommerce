@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 export default function CategoryPagination({ totalPages, paginate, page }) {
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{ my: "2rem" }}>
       <Pagination
         count={totalPages}
         variant="outlined"

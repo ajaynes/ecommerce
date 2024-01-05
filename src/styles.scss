@@ -74,8 +74,28 @@
 		}
 	}
 }
+
+// body
 .body-layout {
 	margin-top: 25px;
+}
+
+// category
+.filters {
+	max-height: 600px;
+	overflow-y: hidden;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&:hover,
+	&:active,
+	&:focus {
+		overflow-y: auto;
+	}
+}
+
+.MuiPagination-ul {
+	justify-content: center;
 }
 
 // slick slider

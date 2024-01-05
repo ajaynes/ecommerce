@@ -6,7 +6,6 @@ import { useGetCategoryByNameQuery } from "../services/product";
 import CategoryPagination from "../components/CategoryPagination";
 import { formatCategoryName } from "../utilities";
 import CategoryPageLayout from "../layouts/CategoryPageLayout";
-import CategorySidebar from "../components/CategorySidebar";
 
 export default function Category() {
   const { categoryName } = useParams();
@@ -76,13 +75,13 @@ export default function Category() {
         <>Loading...</>
       ) : data ? (
         <>
-          <CategoryPageLayout products={data.products}>
-            <CategorySidebar
-              filter={filter}
-              products={isFiltered ? filteredList : data.products}
-              clearFilter={clearFilter}
-            />
-            <h1>{formattedName}</h1>
+          <CategoryPageLayout
+            filter={filter}
+            products={isFiltered ? filteredList : data.products}
+            clearFilter={clearFilter}
+            name={formattedName}
+            isFiltered={isFiltered}
+          >
             <>
               <ProductGrid
                 category={categoryName}
