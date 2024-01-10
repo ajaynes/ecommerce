@@ -98,6 +98,33 @@
 	justify-content: center;
 }
 
+.hide {
+	display: none;
+}
+
+.search-box {
+	position: relative;
+	z-index: 1;
+
+	a {
+		color: white;
+		text-decoration: none;
+		div {
+			padding-top: 0.75rem;
+		}
+		&:not(:last-child) div {
+			border-bottom: 1px solid gray;
+			padding-bottom: 0.75rem;
+		}
+
+		&:hover,
+		&:focus,
+		&:active {
+			text-decoration: underline;
+		}
+	}
+}
+
 // slick slider
 .slick-list {
 	position: relative;

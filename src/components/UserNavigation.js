@@ -1,54 +1,99 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-import Menu from "@mui/material/Menu";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import Avatar from "@mui/material/Avatar";
-
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
+import { useSearchProductsByTermQuery } from "../services/product";
+import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 
 export default function UserNavigation() {
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [searchData, setSearchData] = useState();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [search, setSearch] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [isSearch, setIsSearch] = useState(false);
+  const { data } = useSearchProductsByTermQuery(search, { skip: isSearch });
 
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  useEffect(() => {
+    if (data) {
+      setSearchData([data]);
+    }
+  }, [data]);
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+    if (event.target.value.length === 0) {
+      setSearchData([]);
+      setDropdownVisible(false);
+    } else {
+      setDropdownVisible(true);
+    }
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const clearSearch = () => {
+    setSearch("");
+    setSearchData([]);
+    setDropdownVisible(false);
+    setIsSearch(false);
   };
 
   return (
-    <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="Open settings">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+    <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "space-between" }}>
+      <ClickAwayListener onClickAway={clearSearch}>
+        <div className="search-box">
+          <TextField
+            value={search}
+            onChange={handleSearchChange}
+            variant="outlined"
+            placeholder="Search..."
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Box
+            className={dropdownVisible ? "show" : "hide"}
+            component="section"
+            sx={{
+              p: 2,
+              width: "100%",
+              position: "absolute",
+              backgroundColor: "#444444",
+            }}
+          >
+            {searchData?.[0]?.products.length ? (
+              searchData[0].products.map((product) => (
+                <Link
+                  key={product.id} // Add key prop with unique value
+                  onClick={clearSearch}
+                  to={`/product/${product.title
+                    .replace(/ +/g, "-")
+                    .toLowerCase()}?id=${product.id}`}
+                  style={{
+                    bottom: "25px",
+                    width: "calc(100% - 36px)",
+                  }}
+                >
+                  <div key={product.id}>{product.title}</div>
+                </Link>
+              ))
+            ) : (
+              <div>No results</div>
+            )}
+          </Box>
+        </div>
+      </ClickAwayListener>
+      <Link to="/cart">
+        <IconButton aria-label="shopping cart">
+          <ShoppingCartOutlinedIcon />
         </IconButton>
-      </Tooltip>
-      <Menu
-        sx={{ mt: "45px" }}
-        id="menu-appbar"
-        anchorEl={anchorElUser}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        open={Boolean(anchorElUser)}
-        onClose={handleCloseUserMenu}
-      >
-        {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
-          </MenuItem>
-        ))}
-      </Menu>
+      </Link>
     </Box>
   );
 }
